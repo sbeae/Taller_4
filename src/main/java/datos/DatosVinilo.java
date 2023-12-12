@@ -2,7 +2,11 @@ package datos;
 
 import dominio_problema.Vinilo;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DatosVinilo {
 
@@ -33,9 +37,9 @@ public class DatosVinilo {
             try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
                 String linea = reader.readLine();
                 while (linea != null) {
-                    // Verificar si la línea contiene datos válidos
+
                     if (!linea.trim().isEmpty()) {
-                        // Si encontramos al menos una línea con datos, el archivo no está vacío
+
                         return false;
                     }
                     linea = reader.readLine();
@@ -44,14 +48,14 @@ public class DatosVinilo {
                 e.printStackTrace();
             }
         }
-        // Si no se encuentra ninguna línea con datos válidos, consideramos el archivo como vacío
+
         return true;
     }
 
     public ArrayList<Vinilo> obtenerViniloArchivo() {
         ArrayList<Vinilo> vinilos = new ArrayList<>();
         if (existeArchivo()) {
-            //Si el archivo estaba vacío, se retorna un arreglo vacío
+
             if (archivoViniloVacio()) {
                 return vinilos;
             } else {
@@ -74,6 +78,48 @@ public class DatosVinilo {
             return obtenerViniloArchivo();
         }
         return vinilos;
+    }
+    public Vinilo obtenerDatosVinilo(String nombreVinilo) {
+        if (existeArchivo()) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(ruta));
+                String linea = reader.readLine();
+                while (linea != null) {
+                    String[] datos = linea.split(",");
+                    String name_Artist = datos[0];
+                    String title_LP = datos[1];
+                    int year = Integer.parseInt(datos[2]);
+                    if (title_LP.equalsIgnoreCase(nombreVinilo)) {
+                        return new Vinilo(name_Artist, title_LP, year);
+                    }
+                    linea = reader.readLine();
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El archivo no existe.");
+        }
+        return null;
+    }
+    public boolean eliminarVinilo(String nombreVinilo) {
+        if (existeArchivo()) {
+            try {
+                List<String> lines = Files.readAllLines(Paths.get(ruta));
+                List<String> updatedLines = lines.stream()
+                        .filter(line -> !line.contains(nombreVinilo))
+                        .collect(Collectors.toList());
+
+                Files.write(Paths.get(ruta), updatedLines);
+                return lines.size() != updatedLines.size();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El archivo no existe.");
+        }
+        return false;
     }
 
 

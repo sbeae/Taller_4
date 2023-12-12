@@ -94,21 +94,9 @@ public class Coleccion {
         }
         return null;
     }
-    public void eliminarVinilo(String nombre){
-        for(int i = 0; i < vinilos.size(); i++){
-            if(vinilos.get(i).getTitle_LP().equalsIgnoreCase(nombre)){
-                vinilos.remove(i);
-                guardarCambios();
-            }
-        }
-    }
 
-    public void cuantosVinilos(){
-        int cantidad = 0;
-        for (Vinilo vinilo : vinilos) {
-            cantidad++;
-        }
-    }
+
+
 
     public int cuantosEspaciosQuedan(){
         return 100 - vinilos.size();

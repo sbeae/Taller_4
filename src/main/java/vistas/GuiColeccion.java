@@ -62,7 +62,8 @@ public class GuiColeccion extends JFrame {
         eliminarViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para eliminar un vinilo
+                new VentanaEliminar(coleccion).setVisible(true);
+                GuiColeccion.this.dispose();
             }
         });
 

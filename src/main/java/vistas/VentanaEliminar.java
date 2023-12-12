@@ -1,7 +1,6 @@
 package vistas;
 
 import dominio_problema.Coleccion;
-import dominio_problema.Vinilo;
 import datos.DatosVinilo;
 
 import javax.swing.*;
@@ -9,30 +8,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VentanaBuscar extends JFrame {
+public class VentanaEliminar extends JFrame {
     private Coleccion coleccion;
     private DatosVinilo datosVinilo;
     private JTextField name_ArtistField;
-    private JButton buscarButton;
+    private JButton eliminarButton;
     private JButton volverButton;
-    private JLabel viniloInfoLabel;
 
-    public VentanaBuscar(Coleccion coleccion) {
+    public VentanaEliminar(Coleccion coleccion) {
         this.coleccion = coleccion;
         this.datosVinilo = new DatosVinilo();
 
         name_ArtistField = new JTextField(20);
-        buscarButton = new JButton("Buscar");
+        eliminarButton = new JButton("Eliminar");
         volverButton = new JButton("Volver");
-        viniloInfoLabel = new JLabel();
 
-        buscarButton.addActionListener(new ActionListener() {
+        eliminarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String nombre = name_ArtistField.getText();
-                Vinilo vinilo = datosVinilo.obtenerDatosVinilo(nombre);
-                if (vinilo != null) {
-                    JOptionPane.showMessageDialog(null, "Nombre del artista: " + vinilo.getName_Artist() + ", Nombre del LP: " + vinilo.getTitle_LP() + ", Año: " + vinilo.getYear());
+                boolean eliminado = datosVinilo.eliminarVinilo(nombre);
+                if (eliminado) {
+                    JOptionPane.showMessageDialog(null, "El vinilo ha sido eliminado de la colección.");
                 } else {
                     JOptionPane.showMessageDialog(null, "El vinilo no existe en la colección.");
                 }
@@ -43,16 +40,15 @@ public class VentanaBuscar extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new GuiColeccion(coleccion).setVisible(true);
-                VentanaBuscar.this.dispose();
+                VentanaEliminar.this.dispose();
             }
         });
 
         setLayout(new FlowLayout());
         add(new JLabel("Nombre del Vinilo(LP):"));
         add(name_ArtistField);
-        add(buscarButton);
+        add(eliminarButton);
         add(volverButton);
-        add(viniloInfoLabel);
 
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
