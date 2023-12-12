@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GuiColeccion extends JFrame {
     private Coleccion coleccion;
@@ -89,6 +90,22 @@ public class GuiColeccion extends JFrame {
             }
 
         });
+        mostrarColeccionButton = new JButton("Mostrar Colección");
+        mostrarColeccionButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DatosVinilo datosVinilo = new DatosVinilo();
+                ArrayList<Vinilo> vinilos = datosVinilo.mostrarColeccion();
+                StringBuilder sb = new StringBuilder();
+                for (Vinilo vinilo : vinilos) {
+                    sb.append("Artista: ").append(vinilo.getName_Artist())
+                            .append(", Nombre del LP: ").append(vinilo.getTitle_LP())
+                            .append(", Año: ").append(vinilo.getYear()).append("\n");
+                }
+                JOptionPane.showMessageDialog(null, sb.toString());
+            }
+        });
 
         setLayout(new FlowLayout());
         add(agregarViniloButton);
@@ -98,6 +115,7 @@ public class GuiColeccion extends JFrame {
         add(eliminarViniloButton);
         add(cuantosVinilosButton);
         add(cuantosEspaciosQuedanButton);
+        add(mostrarColeccionButton);
 
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

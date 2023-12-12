@@ -147,4 +147,27 @@ public class DatosVinilo {
         }
         return 0;
     }
+    public ArrayList<Vinilo> mostrarColeccion() {
+        ArrayList<Vinilo> vinilos = new ArrayList<>();
+        if (existeArchivo()) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(ruta));
+                String linea = reader.readLine();
+                while (linea != null) {
+                    String[] datos = linea.split(",");
+                    if (datos.length >= 3) {
+                        Vinilo vinilo = new Vinilo(datos[0], datos[1], Integer.parseInt(datos[2]));
+                        vinilos.add(vinilo);
+                    }
+                    linea = reader.readLine();
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El archivo no existe.");
+        }
+        return vinilos;
+    }
 }
