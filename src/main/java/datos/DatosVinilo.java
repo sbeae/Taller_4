@@ -135,4 +135,16 @@ public class DatosVinilo {
             e.printStackTrace();
         }
     }
+    public long contarVinilos() {
+        if (existeArchivo()) {
+            try {
+                return Files.lines(Paths.get(ruta)).count();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("El archivo no existe.");
+        }
+        return 0;
+    }
 }

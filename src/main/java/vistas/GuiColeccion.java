@@ -1,5 +1,6 @@
 package vistas;
 
+import datos.DatosVinilo;
 import dominio_problema.Coleccion;
 import dominio_problema.Vinilo;
 
@@ -11,7 +12,10 @@ import java.awt.event.ActionListener;
 public class GuiColeccion extends JFrame {
     private Coleccion coleccion;
     private JButton agregarViniloButton;
+
+
     private JButton existeViniloButton;
+    private JButton mostrarColeccionButton;
     private JButton cantidadVinilosPorNombreButton;
     private JButton buscarViniloPorNombreButton;
     private JButton eliminarViniloButton;
@@ -71,7 +75,9 @@ public class GuiColeccion extends JFrame {
         cuantosVinilosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para obtener la cantidad de vinilos
+                DatosVinilo datosVinilo = new DatosVinilo();
+                long cantidadVinilos = datosVinilo.contarVinilos();
+                JOptionPane.showMessageDialog(null, "Hay " + cantidadVinilos + " vinilos en la colección.");
             }
         });
 
@@ -81,6 +87,7 @@ public class GuiColeccion extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Aquí puedes agregar el código para obtener la cantidad de espacios que quedan
             }
+
         });
 
         setLayout(new FlowLayout());
