@@ -25,7 +25,7 @@ public class GuiColeccion extends JFrame {
         agregarViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para agregar un vinilo
+
             }
         });
 
@@ -33,7 +33,7 @@ public class GuiColeccion extends JFrame {
         existeViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para verificar si existe un vinilo
+
             }
         });
 
@@ -41,7 +41,7 @@ public class GuiColeccion extends JFrame {
         cantidadVinilosPorNombreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para obtener la cantidad de vinilos por nombre
+
             }
         });
 
@@ -49,7 +49,7 @@ public class GuiColeccion extends JFrame {
         buscarViniloPorNombreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para buscar un vinilo por nombre
+
             }
         });
 
@@ -57,7 +57,7 @@ public class GuiColeccion extends JFrame {
         eliminarViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para eliminar un vinilo
+
             }
         });
 
@@ -65,7 +65,7 @@ public class GuiColeccion extends JFrame {
         cuantosVinilosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para obtener la cantidad de vinilos
+
             }
         });
 
@@ -73,7 +73,7 @@ public class GuiColeccion extends JFrame {
         cuantosEspaciosQuedanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes agregar el código para obtener la cantidad de espacios que quedan
+
             }
         });
 
