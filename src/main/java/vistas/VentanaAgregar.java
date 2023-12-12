@@ -14,10 +14,36 @@ public class VentanaAgregar extends JFrame {
     private JTextField title_LPField;
     private JTextField yearField;
     private JButton agregarButton;
+    private JButton volverButton;
+
+
+    public Vinilo crearVinilo() {
+        String nombre = (name_ArtistField.getText()).toLowerCase();
+        String titulo = (title_LPField.getText()).toLowerCase();
+        int año = Integer.parseInt(yearField.getText());
+        return new Vinilo(nombre, titulo, año);
+    }
+    private void agregarNuevoVinilo() {
+        Vinilo vinilo = crearVinilo();
+        coleccion.agregarVinilo(vinilo);
+        JOptionPane.showMessageDialog(this, "Vinilo agregada correctamente");
+    }
+
+
 
     public VentanaAgregar(Coleccion coleccion) {
         this.coleccion = coleccion;
 
+        volverButton = new JButton("Volver");
+        volverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GuiColeccion(coleccion).setVisible(true);
+                VentanaAgregar.this.dispose();
+            }
+        });
+
+        setLayout(new FlowLayout());
         name_ArtistField = new JTextField(20);
         title_LPField = new JTextField(20);
         yearField = new JTextField(20);
@@ -26,10 +52,7 @@ public class VentanaAgregar extends JFrame {
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name_Artist = name_ArtistField.getText();
-                String title_LP = title_LPField.getText();
-                int year = Integer.parseInt(yearField.getText());
-                coleccion.agregarVinilo(new Vinilo(name_Artist, title_LP, year));
+                agregarNuevoVinilo();
             }
         });
 
@@ -41,6 +64,7 @@ public class VentanaAgregar extends JFrame {
         add(new JLabel("Año:"));
         add(yearField);
         add(agregarButton);
+        add(volverButton);
 
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

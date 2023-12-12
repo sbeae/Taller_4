@@ -34,4 +34,7 @@ public class Vinilo {
     public void setYear(int year){
         this.year = year;
     }
+    public String toText() {
+        return name_Artist + "," + title_LP + "," + year;
+    }
 }

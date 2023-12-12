@@ -25,15 +25,18 @@ public class GuiColeccion extends JFrame {
         agregarViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new VentanaAgregar(coleccion).setVisible(true);
+                GuiColeccion.this.dispose();
             }
+
         });
 
         existeViniloButton = new JButton("Existe Vinilo");
         existeViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new VentanaExiste(coleccion).setVisible(true);
+                GuiColeccion.this.dispose();
             }
         });
 
@@ -41,7 +44,8 @@ public class GuiColeccion extends JFrame {
         cantidadVinilosPorNombreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new VentanaCantidadVinilos(coleccion).setVisible(true);
+                GuiColeccion.this.dispose();
             }
         });
 
@@ -49,7 +53,8 @@ public class GuiColeccion extends JFrame {
         buscarViniloPorNombreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new VentanaBuscar(coleccion).setVisible(true);
+                GuiColeccion.this.dispose();
             }
         });
 
@@ -57,7 +62,7 @@ public class GuiColeccion extends JFrame {
         eliminarViniloButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Aquí puedes agregar el código para eliminar un vinilo
             }
         });
 
@@ -65,7 +70,7 @@ public class GuiColeccion extends JFrame {
         cuantosVinilosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Aquí puedes agregar el código para obtener la cantidad de vinilos
             }
         });
 
@@ -73,7 +78,7 @@ public class GuiColeccion extends JFrame {
         cuantosEspaciosQuedanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // Aquí puedes agregar el código para obtener la cantidad de espacios que quedan
             }
         });
 

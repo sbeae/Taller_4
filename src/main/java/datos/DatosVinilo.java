@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class DatosVinilo {
 
     String ruta;
-    public DatosVinilo(){
+
+    public DatosVinilo() {
         this.ruta = "src/main/java/datos/datos.txt";
     }
 
@@ -16,6 +17,7 @@ public class DatosVinilo {
         File file = new File(ruta);
         return file.exists();
     }
+
     public void crearArchivoVinilo() {
         File f = new File(ruta);
         try {
@@ -52,7 +54,7 @@ public class DatosVinilo {
             //Si el archivo estaba vacío, se retorna un arreglo vacío
             if (archivoViniloVacio()) {
                 return vinilos;
-            }else {
+            } else {
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(ruta));
                     String linea = reader.readLine();
@@ -67,7 +69,7 @@ public class DatosVinilo {
                     e.printStackTrace();
                 }
             }
-        }else {
+        } else {
             crearArchivoVinilo();
             return obtenerViniloArchivo();
         }
@@ -75,29 +77,16 @@ public class DatosVinilo {
     }
 
 
+
+
     public void guardarCambios(ArrayList<Vinilo> vinilos) {
-        if (existeArchivo()) {
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta, false))) {
-                for (Vinilo vinilo : vinilos) {
-                    bw.write(vinilo.toString());
-                    bw.newLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ruta))) {
+            for (Vinilo vinilo : vinilos) {
+                writer.write(vinilo.toText());
+                writer.newLine();
             }
-
-        } else {
-            crearArchivoVinilo();
-            guardarCambios(vinilos);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
-
-
-
-
-
-
-
-
 }
